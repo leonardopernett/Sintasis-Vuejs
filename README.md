@@ -1,0 +1,2 @@
+# Sintasis-Vuejs
+las sintasis de vuejs V-FOR V-IF  V-SHOW V-BIND COMPONENTE AXIOS VUE-RESOURCE  FILTRADO
