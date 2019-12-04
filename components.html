@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+</head>
+
+<body>
+    <div id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>lista user</h1>
+                    <common-list v-bind:lists="users"></common-list>
+                </div>
+
+                <div class="col-md-8">
+                    <h1>lista Post</h1>
+                    <common-list v-bind:lists="posts"></common-list>>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script>
+
+        Vue.component('common-list', {
+
+            props: ['lists'],
+            template: 
+            `  <ul class="list-group">
+                            <li class="list-group-item" v-for="item of lists">
+                              {{item.name}}
+                      </li>
+              </ul>`
+        })
+
+
+
+
+
+
+
+
+        const url = 'https://jsonplaceholder.typicode.com/users'
+        const url2 = "https://jsonplaceholder.typicode.com/posts"
+        new Vue({
+
+            el: "#main",
+
+            created: function () {
+                this.getUser()
+                this.getPost()
+            },
+
+            data: {
+                users: [],
+                posts: []
+            },
+
+            methods: {
+                getUser: function () {
+                    axios.get(url).then(res => {
+                        this.users = res.data
+                    })
+                },
+
+                getPost: function () {
+                    axios.get(url2).then(res => {
+                        this.posts = res.data
+                    })
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

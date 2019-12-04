@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-event</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+</head>
+<body>
+  <div id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <h3>subscribete a nuestro boletin</h3>
+            </div>
+
+            <div class="col-md-4">
+              <div class="input-group">
+                    <input type="text" class="form-control mx-2" v-model="name" v-on:keyup.enter="add()">
+                    <button type="submit"  @click="add()" class="btn btn-primary">Enviar</button>
+              </div>
+              <hr>
+              <ul class="list-group">
+                  <li class="list-group-item" v-for="(item, index) of peoples" > 
+                      {{item}} 
+                       <a href="" @click="delete(index)"><span class="badge badge-primary">X</span></a>
+                    
+                  </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+               <button class="btn btn-dark" @click="num++">me gusta <span> {{num}}</span></button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
+    <script>
+        const url ='https://jsonplaceholder.typicode.com/users'
+         new Vue({
+            
+             el:"#main",
+
+
+              data:{
+                  peoples:['leonardo','luis','pedro'],
+                  name:'',
+                  num:0
+              },
+
+              methods:{
+                  add: function(){
+                      this.peoples.push(this.name)
+                      this.name=""
+                  },
+
+                  delete: function(id){
+
+                      this.peoples.splice(id, 1)
+                  },
+
+         
+                  
+              }
+
+
+         })
+    </script>
+</body>
+</html>

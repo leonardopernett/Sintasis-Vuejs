@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+</head>
+<body>
+  <div id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>lista vuejs ajax</h1>
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="list of lists">
+                         {{list.name}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-8">
+                <h3>JSON </h3> 
+                 <pre>
+                    {{ $data | json }} 
+                 </pre>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script>
+        const url ='https://jsonplaceholder.typicode.com/users'
+         new Vue({
+            
+             el:"#main",
+
+             created:function(){
+
+                 this.getUser()
+             },
+
+             data: {
+                 lists:[]
+             },
+
+             methods:{
+                 getUser: function(){
+                   axios.get(url).then(res=> {
+                        this.lists = res.data
+                   })
+                 }
+             }
+        
+              
+         })
+    </script>
+</body>
+</html>
